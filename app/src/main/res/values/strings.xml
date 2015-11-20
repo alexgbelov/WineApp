@@ -8,4 +8,7 @@
     <string name="password">Password:</string>
     <string name="firstName">First Name:</string>
     <string name="lastName">Last Name: </string>
+    <string name="register">Register</string>
+    <string name="login">Log In</string>
+    <string name="goBack">Go Back</string>
 </resources>

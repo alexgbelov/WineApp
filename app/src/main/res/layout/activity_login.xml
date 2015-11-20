@@ -14,7 +14,7 @@
         android:maxHeight="150dp"
         android:maxWidth="150dp"
         android:id="@+id/logoView"
-        android:src="@drawable/Wine_bottle"
+        android:src="@drawable/wine_bottle"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:layout_alignParentTop="true"

@@ -1,5 +1,6 @@
 package com.example.belov.wineapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -7,11 +8,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
     private String mUserName;
     private String mPassword;
+
+    final static String USERNAME_TAG = "USERNAME";
+    final static String PASSWORD_TAG = "PASSWORD";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +32,16 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mUserName = usernameEditText.getText().toString();
                 mPassword = passwordEditText.getText().toString();
+                if (mUserName.equals(""))
+                    Toast.makeText(getApplicationContext(), "Please enter a username", Toast.LENGTH_LONG).show();
+                else if (mPassword.equals(""))
+                    Toast.makeText(getApplicationContext(), "Please enter a password", Toast.LENGTH_LONG).show();
+                else {
+                    Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                    intent.putExtra(USERNAME_TAG, mUserName);
+                    intent.putExtra(PASSWORD_TAG, mPassword);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -34,6 +49,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v){
                 mUserName = usernameEditText.getText().toString();
                 mPassword = passwordEditText.getText().toString();
+                if (mUserName.equals(""))
+                    Toast.makeText(getApplicationContext(), "Please enter a username", Toast.LENGTH_LONG).show();
+                else if (mPassword.equals(""))
+                    Toast.makeText(getApplicationContext(), "Please enter a password", Toast.LENGTH_LONG).show();
             }
         });
 

@@ -11,4 +11,8 @@
     <string name="register">Register</string>
     <string name="login">Log In</string>
     <string name="goBack">Go Back</string>
+    <string name="enterPassword">Please enter a password</string>
+    <string name="enterUsername">Please enter your username</string>
+    <string name="failedLogin">Invalid username or password</string>
+    <string name="failedRegister">Error creating an account</string>
 </resources>

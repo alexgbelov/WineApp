@@ -11,4 +11,12 @@
     <string name="register">Register</string>
     <string name="login">Log In</string>
     <string name="goBack">Go Back</string>
+    <string name="enterPassword">Please enter a password</string>
+    <string name="enterUsername">Please enter your username</string>
+    <string name="failedLogin">Invalid username or password</string>
+    <string name="failedRegister">Error creating an account</string>
+    <string name="title_activity_view_menu">ViewMenuActivity</string>
+    <string name="title_activity_view_menu_activity_adapter">ViewMenuActivityAdapter</string>
+    <string name="title_activity_order_menu">OrderMenuActivity</string>
+    <string name="title_activity_order_items">OrderItemsActivity</string>
 </resources>

@@ -31,23 +31,17 @@ public class LoginActivity extends AppCompatActivity {
         final Button loginButton = (Button) findViewById(R.id.loginButton);
         final Button registerButton = (Button) findViewById(R.id.registerButton);
 
-        mParseHander = new ParseHandler(this);
+        mParseHander = ParseHandler.getParseHandler();
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mUserName = usernameEditText.getText().toString();
                 mPassword = passwordEditText.getText().toString();
-                if (mUserName.equals(""))
-                    Toast.makeText(getApplicationContext(), "Please enter a username", Toast.LENGTH_LONG).show();
-                else if (mPassword.equals(""))
-                    Toast.makeText(getApplicationContext(), "Please enter a password", Toast.LENGTH_LONG).show();
-                else {
-                    Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
-                    intent.putExtra(USERNAME_TAG, mUserName);
-                    intent.putExtra(PASSWORD_TAG, mPassword);
-                    startActivity(intent);
-                }
+                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                intent.putExtra(USERNAME_TAG, mUserName);
+                intent.putExtra(PASSWORD_TAG, mPassword);
+                startActivity(intent);
             }
         });
 
@@ -62,6 +56,8 @@ public class LoginActivity extends AppCompatActivity {
                 else if (mParseHander.loginUser(mUserName, mPassword)) {
                     //user information is correct
                     //go to menu activity
+                    Intent intent = new Intent(getApplicationContext(), ViewMenuActivity.class);
+                    startActivity(intent);
                 } else {
                     //user information is not correct
                     Toast.makeText(getApplicationContext(), getString(R.string.failedLogin), Toast.LENGTH_LONG).show();

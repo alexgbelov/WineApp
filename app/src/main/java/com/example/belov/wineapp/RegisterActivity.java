@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.parse.ParseHandler;
+import com.parse.Parse;
 
 /**
  * Created by alexander on 11/17/2015.
@@ -20,14 +21,14 @@ public class RegisterActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_activity);
-        mParseHandler = new ParseHandler(this);
+
         Intent intent = getIntent();
         final EditText username = (EditText) findViewById(R.id.usernameEditText);
         final EditText password = (EditText) findViewById(R.id.passwordEditText);
         final EditText firstName = (EditText) findViewById(R.id.firstNameEditText);
         final EditText lastName = (EditText) findViewById(R.id.lastNameEditText);
         String s = LoginActivity.USERNAME_TAG;
-
+        mParseHandler = ParseHandler.getParseHandler();
         username.setText(intent.getStringExtra(LoginActivity.USERNAME_TAG));
         password.setText(intent.getStringExtra(LoginActivity.PASSWORD_TAG));
 
@@ -48,6 +49,8 @@ public class RegisterActivity extends Activity {
                 mFirstName = firstName.getText().toString();
                 mLastName = lastName.getText().toString();
                 if (mParseHandler.registerUser(mFirstName, mLastName, mUserName, mPassword)) {
+                    Intent intent = new Intent(getApplicationContext(), ViewMenuActivity.class);
+                    startActivity(intent);
                     //go to menu
                 } else {
                     Toast.makeText(getApplicationContext(), getString(R.string.failedRegister), Toast.LENGTH_LONG).show();

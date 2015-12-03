@@ -25,31 +25,30 @@ public class ParseHandler {
     private ArrayList<UserReview> itemReviews;
     private ArrayList<UserReview> userReviews;
     private TreeSet<String> orderedItems;
+    private static ParseHandler parseHandler;
 
 
     /**
-     * Private constructor that enforces the use of the
-     * other constructor to specify a context.
+     * Private constructor that enforces a singleton design pattern.
      */
     private ParseHandler() {
-        // nothing needed here
-    }
-
-    /**
-     * Constructor that initializes all of the lists above as
-     * well as the connection to the Parse database. Takes in a context
-     * parameter that is used to initialize the Parse connection.
-     * @param context Context object needed to initialize Parse.
-     */
-    public ParseHandler(Context context) {
         menuItems = new ArrayList<MenuItem>();
         itemReviews = new ArrayList<UserReview>();
         userReviews = new ArrayList<UserReview>();
         orderedItems = new TreeSet<String>();
+    }
 
-        // create connection to parse database
-        Parse.enableLocalDatastore(context);
-        Parse.initialize(context, "MEd9C5XGBe2Lab1n4CsOb03GGs5Qc4A5zlJuuacM", "EKlRqaNIp2tGJNz8G2jXehH41fdgMS1fQifCObJB");
+    /**
+     * Returns the single instance of this class to be used to
+     * access this class' methods.
+     * @return ParseHandler object that will be used to access the methods of this class.
+     */
+    public static ParseHandler getParseHandler() {
+        if (parseHandler == null) {
+            parseHandler = new ParseHandler();
+        }
+
+        return parseHandler;
     }
 
     /**

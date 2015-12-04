@@ -17,7 +17,8 @@
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/wine_bottle" />
         <!-- android:src="@drawable/wine_bottle" -->
 
 

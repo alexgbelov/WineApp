@@ -1,37 +1,24 @@
 package com.example.belov.wineapp;
 
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-
-
-
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
-import android.view.MenuItem;
+import com.example.parse.MenuItem;
+import com.example.parse.ParseHandler;
+
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.os.AsyncTask;
 
-import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class ViewMenuActivity extends AppCompatActivity {
 
-    private ArrayList<Item> itemArrayList = new ArrayList<Item>();
+    private ArrayList<MenuItem> itemArrayList;
     private ViewMenuActivityAdapter mAdapter;
 
     private static final String PRODUCT = "product";
@@ -41,19 +28,11 @@ public class ViewMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_menu);
 
-        Item temp = new Item();
-        Item temp2 = new Item();
-
-        temp.itemName = "beer";
-        temp.itemPrice = "$4.00";
-        temp2.itemName = "wine";
-        temp2.itemPrice = "$7.00";
-
-        itemArrayList.add(temp);
-        itemArrayList.add(temp2);
+        // grab menu items
+        itemArrayList = ParseHandler.getParseHandler().getMenuItems("WineBar");
 
         //initialize adapter
-        mAdapter = new ViewMenuActivityAdapter(itemArrayList);
+        mAdapter = new ViewMenuActivityAdapter(this, itemArrayList);
 
         //get listview
         ListView listMenu = (ListView)findViewById(R.id.listView);
@@ -62,24 +41,23 @@ public class ViewMenuActivity extends AppCompatActivity {
         listMenu.setAdapter(mAdapter);
 
         //start async task
-        new Stuff();
+        //new Stuff();
 
         listMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
 
-                Item clickItem = mAdapter.getItem(position);
+                MenuItem clickedItem = mAdapter.getItem(position);
 
-                Toast.makeText(getBaseContext(), clickItem.itemName + " " + clickItem.itemPrice, Toast.LENGTH_LONG).show();
+                // create intent with info needed for item information
+                Intent goToInfo = new Intent(ViewMenuActivity.this, ItemInformationActivity.class);
+                goToInfo.putExtra("itemId", clickedItem.getItemId());
+                goToInfo.putExtra("itemName", clickedItem.getName());
+                goToInfo.putExtra("itemPrice", clickedItem.getPrice());
+                goToInfo.putExtra("itemDescription", clickedItem.getDescription());
 
-                //create intent and start activity.
-                /*
-                Intent choice = new Intent(getApplicationContext(), activity.class);
-
-                choice.putExtra(PRODUCT, clickItem.itemName);
-                startActivity(choice);
-                */
+                startActivity(goToInfo);
             }
         });
     }
@@ -93,13 +71,13 @@ public class ViewMenuActivity extends AppCompatActivity {
 
         }
 
-        private class HttpGetTask extends AsyncTask<Void, Void, Item> {
+        private class HttpGetTask extends AsyncTask<Void, Void, MenuItem> {
 
 
             @Override
-            protected Item doInBackground(Void... params) {
+            protected MenuItem doInBackground(Void... params) {
 
-                Item x = new Item();
+                MenuItem x = new MenuItem(null, null, null, null, null);
                 return x;
                 /*
                 try {
@@ -120,10 +98,10 @@ public class ViewMenuActivity extends AppCompatActivity {
             }
 
             @Override
-            protected void onPostExecute(Item x) {
-
+            protected void onPostExecute(MenuItem x) {
+                super.onPostExecute(x);
                 //set text and image fields
-                mAdapter.itemArrayList.add(x);
+                mAdapter.add(x);
                 mAdapter.notifyDataSetChanged();
             }
         }
@@ -135,7 +113,7 @@ public class ViewMenuActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_view_menu, menu);
         return true;
     }
-
+/*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -149,5 +127,5 @@ public class ViewMenuActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 }

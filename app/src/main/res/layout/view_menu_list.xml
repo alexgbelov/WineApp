@@ -10,8 +10,8 @@
         android:layout_height="75dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-
-        android:src="@drawable/wine_bottle" />
+        />
+        <!--android:src="@drawable/wine_bottle" />-->
 
     <TextView
         android:id="@+id/itemName"

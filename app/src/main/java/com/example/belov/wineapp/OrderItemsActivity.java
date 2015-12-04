@@ -9,6 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.parse.ParseHandler;
+
+import java.text.DecimalFormat;
+
 
 public class OrderItemsActivity extends AppCompatActivity {
 
@@ -18,6 +22,7 @@ public class OrderItemsActivity extends AppCompatActivity {
     private Button cancelButton;
     private EditText quantity;
     private EditText price;
+    private final DecimalFormat formatter = new DecimalFormat("$#.00");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,47 +37,43 @@ public class OrderItemsActivity extends AppCompatActivity {
         quantity = (EditText) findViewById(R.id.quantityInput);
         price = (EditText) findViewById(R.id.priceInput);
 
-        quantity.setText("1");
+        // get item's price from intent
+        final Double itemPrice = getIntent().getDoubleExtra("itemPrice", 0);
 
+        // set default values for text areas
+        quantity.setText("1");
+        price.setText(formatter.format(itemPrice));
 
         //changes price automatically after user updates quantity
         quantity.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
             public void onFocusChange(View v, boolean hasFocus) {
 
-
-                if(!hasFocus) {
-
+                if (!hasFocus) {
                     String amount = quantity.getText().toString();
-                    Double totalDouble = Double.parseDouble(amount) * 4.3;
+                    Double totalDouble = Integer.parseInt(amount) * itemPrice;
 
-
-
-
-                    price.setText("$" + totalDouble.toString());
+                    price.setText(formatter.format(totalDouble));
                 }
 
             }
         });
 
-
-
         placeOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getApplicationContext(), "Order Placed", Toast.LENGTH_SHORT).show();
-                //create intent and start activity.
-                /*
-                Intent choice = new Intent(getApplicationContext(), activity.class);
+                // place order by saving information to Parse
+                String itemId = getIntent().getStringExtra("itemId");
+                boolean orderPlaced = ParseHandler.getParseHandler().orderItem("WineBar", itemId, Integer.parseInt(quantity.getText().toString()));
 
-                choice.putExtra(PRODUCT, clickItem.itemName);
-                startActivity(choice);
-                */
+                // inform user of success
+                if (orderPlaced)
+                    Toast.makeText(getApplicationContext(), "Order Placed", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(getApplicationContext(), "Order Could Not Be Placed!", Toast.LENGTH_SHORT).show();
 
                 finish();
-
-
 
             }
         });

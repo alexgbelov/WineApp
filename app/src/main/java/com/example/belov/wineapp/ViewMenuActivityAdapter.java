@@ -2,76 +2,65 @@ package com.example.belov.wineapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.parse.MenuItem;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class ViewMenuActivityAdapter extends BaseAdapter {
+public class ViewMenuActivityAdapter extends ArrayAdapter<MenuItem> {
 
-    public ArrayList<Item> itemArrayList;
+    // set up decimal formatter
+    private final DecimalFormat formatter = new DecimalFormat("$#.00");
 
-    ViewMenuActivityAdapter(ArrayList<Item> input){
-
-        this.itemArrayList = input;
+    public ViewMenuActivityAdapter(Context context, ArrayList<MenuItem> items) {
+        super(context, 0, items);
     }
 
     @Override
-    public int getCount() {
+    public View getView(int position, View convertView, final ViewGroup parent) {
 
-        return itemArrayList.size();
-    }
+        final MenuItem itemInfo = getItem(position);
 
-    @Override
-    public Item getItem(int num) {
-
-        return itemArrayList.get(num);
-    }
-
-    @Override
-    public long getItemId(int num) {
-
-        return num;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-
-        final Context mContext = parent.getContext();
-
-        if(convertView==null){
-
-            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.view_menu_list, parent,false);
-        }
-
-        TextView itemName = (TextView) convertView.findViewById(R.id.itemName);
-        TextView itemPrice = (TextView) convertView.findViewById(R.id.itemPrice);
-        ImageView itemImage = (ImageView) convertView.findViewById(R.id.itemImage);
-
-        Button orderButton = (Button) convertView.findViewById(R.id.orderButton);
-
-
-        Item itemInfo = itemArrayList.get(position);
-
-        itemName.setText(itemInfo.itemName);
-        itemPrice.setText(itemInfo.itemPrice);
-        //itemImage.setImageBitmap(itemInfo.itemPicture);
-
-        orderButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-
-                Intent order = new Intent(mContext, OrderItemsActivity.class);
-                mContext.startActivity(order);
-
+        if (itemInfo != null) {
+            if (convertView == null) {
+                convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_menu_list, parent, false);
             }
-        });
+
+            TextView itemName = (TextView) convertView.findViewById(R.id.itemName);
+            TextView itemPrice = (TextView) convertView.findViewById(R.id.itemPrice);
+            ImageView itemImage = (ImageView) convertView.findViewById(R.id.itemImage);
+
+            Button orderButton = (Button) convertView.findViewById(R.id.orderButton);
+
+            Log.d("DEBUG", "Position of view: " + position);
+
+            itemName.setText(itemInfo.getName());
+            itemPrice.setText(formatter.format(itemInfo.getPrice()));
+            //itemImage.setImageBitmap(itemInfo.itemPicture);
+
+            orderButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent order = new Intent(getContext(), OrderItemsActivity.class);
+                    order.putExtra("itemId", itemInfo.getItemId());
+                    order.putExtra("itemPrice", itemInfo.getPrice());
+
+                    getContext().startActivity(order);
+
+                }
+            });
+        }
 
         return convertView;
     }

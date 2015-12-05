@@ -32,7 +32,7 @@ public class RegisterActivity extends Activity {
         password.setText(intent.getStringExtra(LoginActivity.PASSWORD_TAG));
 
         Button goBack = (Button) findViewById(R.id.goBackButton);
-        Button registerButton = (Button) findViewById(R.id.goBackButton);
+        Button registerButton = (Button) findViewById(R.id.registerButton);
 
         goBack.setOnClickListener(new View.OnClickListener() {
             @Override

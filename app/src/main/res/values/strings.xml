@@ -19,4 +19,5 @@
     <string name="title_activity_view_menu_activity_adapter">ViewMenuActivityAdapter</string>
     <string name="title_activity_order_menu">OrderMenuActivity</string>
     <string name="title_activity_order_items">OrderItemsActivity</string>
+    <string name="action_sign_in">Login</string>
 </resources>

@@ -28,8 +28,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         final EditText usernameEditText = (EditText) findViewById(R.id.usernameEditText);
         final EditText passwordEditText = (EditText) findViewById(R.id.passwordEditText);
-        final Button loginButton = (Button) findViewById(R.id.loginButton);
-        final Button registerButton = (Button) findViewById(R.id.registerButton);
+        final Button loginButton = (Button) findViewById(R.id.registerButton);
+        final Button registerButton = (Button) findViewById(R.id.goBackButton);
 
         mParseHander = ParseHandler.getParseHandler();
 

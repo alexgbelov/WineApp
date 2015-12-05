@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.parse.ParseHandler;
-import com.parse.Parse;
 
 /**
  * Created by alexander on 11/17/2015.

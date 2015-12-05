@@ -33,14 +33,12 @@ public class AddNewReview extends AppCompatActivity{
 
                 String ratingText = ((EditText) findViewById(R.id.review)).getText().toString();
 
-                // TODO send starCount and ratingText to database
+
                 handler.uploadUserReview(getIntent().getStringExtra("itemId"), ratingText, Math.round(starCount) );
 
                 Toast toast = Toast.makeText(getApplicationContext(), "Review Submitted", Toast.LENGTH_SHORT);
                 toast.show();
                 finish();
-                //Intent intent = new Intent(getApplicationContext(), ItemInformationActivity.class);
-                //startActivity(intent);
 
             }
         });

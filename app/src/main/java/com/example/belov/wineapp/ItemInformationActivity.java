@@ -61,7 +61,11 @@ public class ItemInformationActivity extends AppCompatActivity {
             public void onClick(View v){
                 Intent intent = new Intent(getApplicationContext(), AddNewReview.class);
                 intent.putExtra("itemId", getIntent().getStringExtra("itemId"));
+                intent.putExtra("itemDescription", getIntent().getStringExtra("itemDescription"));
+                intent.putExtra("itemName", getIntent().getStringExtra("itemName"));
+                intent.putExtra("itemPrice", getIntent().getDoubleExtra("itemPrice", 0));
                 startActivity(intent);
+                finish();
             }
         });
 

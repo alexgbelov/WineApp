@@ -51,23 +51,48 @@ public class AddNewReview extends AppCompatActivity{
                 String ratingText = ((EditText) findViewById(R.id.review)).getText().toString();
 
 
-                handler.uploadUserReview(getIntent().getStringExtra("itemId"), ratingText, Math.round(starCount) );
+                boolean success = handler.uploadUserReview(getIntent().getStringExtra("itemId"), ratingText, Math.round(starCount) );
 
                 Toast toast = Toast.makeText(getApplicationContext(), "Review Submitted", Toast.LENGTH_SHORT);
                 toast.show();
-                finish();
 
+                if (success) {
+                    Intent intent = new Intent(getApplicationContext(), ItemInformationActivity.class);
+                    intent.putExtra("itemId", getIntent().getStringExtra("itemId"));
+                    intent.putExtra("itemDescription", getIntent().getStringExtra("itemDescription"));
+                    intent.putExtra("itemName", getIntent().getStringExtra("itemName"));
+                    intent.putExtra("itemPrice", getIntent().getDoubleExtra("itemPrice", 0));
+                    startActivity(intent);
+                }
+
+                finish();
             }
         });
         Button cancelButton = (Button) findViewById(R.id.cancelButton);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ItemInformationActivity.class);
+                intent.putExtra("itemId", getIntent().getStringExtra("itemId"));
+                intent.putExtra("itemDescription", getIntent().getStringExtra("itemDescription"));
+                intent.putExtra("itemName", getIntent().getStringExtra("itemName"));
+                intent.putExtra("itemPrice", getIntent().getDoubleExtra("itemPrice", 0));
                 startActivity(intent);
+                finish();
             }
         });
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), ItemInformationActivity.class);
+        intent.putExtra("itemId", getIntent().getStringExtra("itemId"));
+        intent.putExtra("itemDescription", getIntent().getStringExtra("itemDescription"));
+        intent.putExtra("itemName", getIntent().getStringExtra("itemName"));
+        intent.putExtra("itemPrice", getIntent().getDoubleExtra("itemPrice", 0));
+        startActivity(intent);
+        finish();
     }
 
     @Override

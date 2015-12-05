@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.parse.ParseHandler;
-import com.parse.Parse;
 
 /**
  * Created by alexander on 11/17/2015.
@@ -33,7 +32,7 @@ public class RegisterActivity extends Activity {
         password.setText(intent.getStringExtra(LoginActivity.PASSWORD_TAG));
 
         Button goBack = (Button) findViewById(R.id.goBackButton);
-        Button registerButton = (Button) findViewById(R.id.registerButton);
+        Button registerButton = (Button) findViewById(R.id.goBackButton);
 
         goBack.setOnClickListener(new View.OnClickListener() {
             @Override

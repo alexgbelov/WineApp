@@ -5,6 +5,10 @@
     android:textColor="#4169E1"
     android:background="#F8F8FF">
 
+    <!-- needed for the toolbar -->
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/tool_bar" />
 
     <RatingBar
         android:layout_width="wrap_content"

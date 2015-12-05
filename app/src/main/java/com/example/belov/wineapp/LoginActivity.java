@@ -58,6 +58,8 @@ public class LoginActivity extends AppCompatActivity {
                     //go to menu activity
                     Intent intent = new Intent(getApplicationContext(), ViewMenuActivity.class);
                     startActivity(intent);
+
+                    finish(); // remove activity from backstack
                 } else {
                     //user information is not correct
                     Toast.makeText(getApplicationContext(), getString(R.string.failedLogin), Toast.LENGTH_LONG).show();
@@ -66,6 +68,12 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
+
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_login, menu);

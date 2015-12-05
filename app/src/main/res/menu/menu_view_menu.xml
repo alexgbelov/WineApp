@@ -2,6 +2,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.belov.wineapp.ViewMenuActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+
+    <!--<item
+        android:id="@+id/action_my_account"
+        android:orderInCategory="1"
+        android:title="My Account"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_edit_account"
+        android:orderInCategory="2"
+        android:title="Edit Account"
+        app:showAsAction="never" />-->
+
+    <item
+        android:id="@+id/action_logout"
+        android:orderInCategory="3"
+        android:title="Logout"
+        app:showAsAction="never" />
+
 </menu>

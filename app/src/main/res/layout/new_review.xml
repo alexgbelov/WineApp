@@ -19,6 +19,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="343dp"
+        android:id="@+id/review"
         />
     <Button
         android:layout_width="221dp"

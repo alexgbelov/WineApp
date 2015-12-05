@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.parse.ParseHandler;
@@ -24,7 +25,7 @@ public class OrderItemsActivity extends AppCompatActivity {
     private Button placeOrderButton;
     private Button cancelButton;
     private EditText quantity;
-    private EditText price;
+    private TextView price;
     private final DecimalFormat formatter = new DecimalFormat("$#.00");
     private Toolbar toolbar;
 
@@ -46,7 +47,7 @@ public class OrderItemsActivity extends AppCompatActivity {
 
         //edit text
         quantity = (EditText) findViewById(R.id.quantityInput);
-        price = (EditText) findViewById(R.id.priceInput);
+        price = (TextView) findViewById(R.id.priceInput);
 
         // get item's price from intent
         final Double itemPrice = getIntent().getDoubleExtra("itemPrice", 0);

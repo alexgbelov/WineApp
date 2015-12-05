@@ -68,7 +68,6 @@ public class ViewMenuActivity extends ActionBarActivity {
                 goToInfo.putExtra("itemPrice", clickedItem.getPrice());
                 goToInfo.putExtra("itemDescription", clickedItem.getDescription());
 
-
                 startActivity(goToInfo);
             }
         });

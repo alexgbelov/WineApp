@@ -44,7 +44,7 @@ public class ViewMenuActivityAdapter extends ArrayAdapter<MenuItem> {
 
             itemName.setText(itemInfo.getName());
             itemPrice.setText(formatter.format(itemInfo.getPrice()));
-            //itemImage.setImageBitmap(itemInfo.itemPicture);
+            itemImage.setImageBitmap(itemInfo.getItemImage());
 
             orderButton.setOnClickListener(new View.OnClickListener() {
                 @Override

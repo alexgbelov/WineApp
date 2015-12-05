@@ -1,5 +1,9 @@
 package com.example.parse;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import com.parse.ParseException;
 import com.parse.ParseFile;
 import java.util.ArrayList;
 
@@ -13,7 +17,7 @@ public class MenuItem {
     // menu item fields
     private String itemId, name, description;
     private Double price;
-    private ParseFile itemImage;
+    private Bitmap itemImage;
     private ArrayList<UserReview> userReviews;
 
     /**
@@ -29,7 +33,20 @@ public class MenuItem {
         this.name = name;
         this.description = description;
         this.price = price;
-        this.itemImage = itemImage;
+
+        // convert ParseFile image into a bitmap image
+        try {
+            if (itemImage != null) {
+                byte[] bitData = itemImage.getData();
+                this.itemImage = BitmapFactory.decodeByteArray(bitData, 0, bitData.length);
+            } else {
+                this.itemImage = null;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+            this.itemImage = null;
+        }
+
     }
 
     /**
@@ -98,17 +115,17 @@ public class MenuItem {
 
     /**
      * Returns the item's image file.
-     * @return ParseFile holding the image of the item.
+     * @return Bitmap holding the image of the item.
      */
-    public ParseFile getItemImage() {
+    public Bitmap getItemImage() {
         return itemImage;
     }
 
     /**
      * Allows the item's image to be changed to the new image provided.
-     * @param itemImage ParseFile containing the new image for the item.
+     * @param itemImage Bitmap containing the new image for the item.
      */
-    public void setItemImage(ParseFile itemImage) {
+    public void setItemImage(Bitmap itemImage) {
         this.itemImage = itemImage;
     }
 

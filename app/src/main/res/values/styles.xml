@@ -1,8 +1,28 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+
+        <item name="android:actionOverflowButtonStyle">@style/OverflowButton</item>
+        <item name="actionOverflowButtonStyle">@style/OverflowButton</item>
+
+        <item name="android:dropDownListViewStyle">@style/OverflowButtonMenu</item>
+        <item name="dropDownListViewStyle">@style/OverflowButtonMenu</item>
+    </style>
+
+    <!-- setting a custom icon to be used for the overflow button -->
+    <style name="OverflowButton" parent="@style/Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_account_circle_white_24dp</item>
+    </style>
+
+    <!-- styling for the dropdown menu of overflow button -->
+    <style name="OverflowButtonMenu" parent="@style/Widget.AppCompat.Light.ListView.DropDown">
+        <item name="android:divider">@color/color_primary</item>
+        <item name="android:dividerHeight">2dp</item>
+        <item name="android:background">@color/color_primary_dark</item>
     </style>
 
 </resources>

@@ -3,7 +3,10 @@ package com.example.belov.wineapp;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import com.example.parse.MenuItem;
 import com.example.parse.ParseHandler;
@@ -16,10 +19,11 @@ import android.widget.Toast;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class ViewMenuActivity extends AppCompatActivity {
+public class ViewMenuActivity extends ActionBarActivity {
 
     private ArrayList<MenuItem> itemArrayList;
     private ViewMenuActivityAdapter mAdapter;
+    private Toolbar toolbar;
 
     private static final String PRODUCT = "product";
 
@@ -27,6 +31,13 @@ public class ViewMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_menu);
+
+        // get the toolbar
+        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+
+        // setup toolbar
+        getSupportActionBar().setTitle("Menu Items");
 
         // grab menu items
         itemArrayList = ParseHandler.getParseHandler().getMenuItems("WineBar");
@@ -57,11 +68,16 @@ public class ViewMenuActivity extends AppCompatActivity {
                 goToInfo.putExtra("itemPrice", clickedItem.getPrice());
                 goToInfo.putExtra("itemDescription", clickedItem.getDescription());
 
+
                 startActivity(goToInfo);
             }
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
 
     public class Stuff  {
 
@@ -113,19 +129,18 @@ public class ViewMenuActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_view_menu, menu);
         return true;
     }
-/*
+
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_logout:
+                ParseHandler.getParseHandler().logoutUser();
+                Intent backToLogin = new Intent(this, LoginActivity.class);
+                startActivity(backToLogin);
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
-    }*/
+    }
 }

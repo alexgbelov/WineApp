@@ -42,8 +42,6 @@ public class ViewMenuActivityAdapter extends ArrayAdapter<MenuItem> {
 
             Button orderButton = (Button) convertView.findViewById(R.id.orderButton);
 
-            Log.d("DEBUG", "Position of view: " + position);
-
             itemName.setText(itemInfo.getName());
             itemPrice.setText(formatter.format(itemInfo.getPrice()));
             //itemImage.setImageBitmap(itemInfo.itemPicture);

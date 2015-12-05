@@ -51,7 +51,8 @@ public class RegisterActivity extends Activity {
                 if (mParseHandler.registerUser(mFirstName, mLastName, mUserName, mPassword)) {
                     Intent intent = new Intent(getApplicationContext(), ViewMenuActivity.class);
                     startActivity(intent);
-                    //go to menu
+
+                    finish(); // remove activity from backstack
                 } else {
                     Toast.makeText(getApplicationContext(), getString(R.string.failedRegister), Toast.LENGTH_LONG).show();
                 }

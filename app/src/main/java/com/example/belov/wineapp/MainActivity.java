@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.parse.ParseHandler;
 import com.parse.Parse;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
         Parse.enableLocalDatastore(getApplicationContext());
         Parse.initialize(getApplicationContext(), "MEd9C5XGBe2Lab1n4CsOb03GGs5Qc4A5zlJuuacM", "EKlRqaNIp2tGJNz8G2jXehH41fdgMS1fQifCObJB");
 
-        //This is a test activity for saving to github
-        Intent intent = new Intent(this, LoginActivity.class);
+        // determining which screen to go to by checking if a user is logged in
+        Intent intent = (ParseHandler.getParseHandler().isUserLoggedIn()) ? new Intent(this, ViewMenuActivity.class) : new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 

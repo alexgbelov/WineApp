@@ -22,14 +22,15 @@ public class AddNewReview extends AppCompatActivity{
         Button submitButton = (Button) findViewById(R.id.submitButton);
         handler = ParseHandler.getParseHandler();
         starCount = 0F;
+        ((RatingBar) findViewById(R.id.ratingBar)).setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                starCount = rating;
+            }
+        });
         submitButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                ((RatingBar) findViewById(R.id.ratingBar)).setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-                    @Override
-                    public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                        starCount = rating;
-                    }
-                });
+
 
                 String ratingText = ((EditText) findViewById(R.id.review)).getText().toString();
 

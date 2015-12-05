@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!--<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#ffBE80FF">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -16,44 +17,63 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:src="@drawable/wine_bottle" />
-    <!--android:src="@drawable/wine_bottle"-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/username"
-        android:id="@+id/usernameTextView"
-        android:layout_above="@+id/usernameEditText"
-        android:layout_alignEnd="@+id/goBackButton" />
 
-    <TextView
+ <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/password"
-        android:id="@+id/passwordTextView"
+        android:text="@string/register"
+        android:id="@+id/goBackButton"
+        android:layout_alignParentBottom="true"
+        android:textColor="#ffffffff"
+        android:background="#ff7e51c2"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/goBack"
+        android:id="@+id/goBackButton"
+        android:layout_alignTop="@+id/goBackButton"
+        android:textColor="#ffffffff"
+        android:background="#ff7e51c2"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/goBack"
+        android:id="@+id/goBackButton"
+        android:textColor="#ffffffff"
+        android:background="#ff7e51c2"
+        android:layout_marginBottom="52dp"
+        android:layout_alignParentBottom="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register"
+        android:id="@+id/goBackButton"
+        android:textColor="#ffffffff"
+        android:background="#ff7e51c2"
+        android:layout_alignTop="@+id/goBackButton"
+        android:layout_toEndOf="@+id/logoView"
+        android:layout_marginStart="33dp" />
+
+   <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/usernameEditText"
+        android:layout_marginTop="41dp"
+        android:ems="10"
+        android:hint="@string/username"
         android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/logoView"
+        android:layout_alignEnd="@+id/goBackButton"
+        android:textColorHint="#ffffffff"
+        android:textColor="#ffffffff"
+        android:editable="true"
         android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/firstName"
-        android:id="@+id/firstNameTextView"
-        android:layout_marginTop="47dp"
-        android:layout_below="@+id/passwordTextView"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/lastName"
-        android:id="@+id/lastNameTextView"
-        android:layout_below="@+id/firstNameTextView"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="41dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -61,17 +81,96 @@
         android:inputType="text"
         android:ems="10"
         android:id="@+id/usernameEditText"
-        android:layout_above="@+id/passwordTextView"
+        android:textColorHint="#ffffffff"
+        android:textColor="#ffffffff"
+        android:editable="true"
+        android:hint="@string/username"
+        android:layout_centerVertical="true"
+        android:layout_alignEnd="@+id/goBackButton"
+        android:layout_toEndOf="@+id/goBackButton"
         android:layout_alignParentStart="true" />
+
+
+</RelativeLayout> -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="#ffBE80FF"
+    tools:context="com.example.belov.wineapp.LoginActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="50dp"
+        android:minWidth="50dp"
+        android:maxHeight="150dp"
+        android:maxWidth="150dp"
+        android:id="@+id/logoView"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/wine_bottle" />
+    <!-- android:src="@drawable/wine_bottle" -->
+
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:inputType="text"
+        android:ems="10"
+        android:id="@+id/usernameEditText"
+        android:layout_marginBottom="10dp"
+        android:textColorHint="#ffffffff"
+        android:textColor="#ffffffff"
+        android:editable="true"
+        android:hint="@string/username"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/logoView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/passwordEditText"
-        android:layout_below="@+id/passwordTextView"
+        android:layout_marginBottom="10dp"
         android:layout_alignParentStart="true"
-        android:inputType="textPassword" />
+        android:layout_below="@+id/usernameEditText"
+        android:layout_alignEnd="@+id/usernameEditText"
+        android:textColorHint="#ffffffff"
+        android:textColor="#ffffffff"
+        android:hint="@string/password" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/goBack"
+        android:id="@+id/goBackButton"
+        android:textColor="#ffffffff"
+        android:background="#ff7e51c2"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="56dp"
+        android:layout_toStartOf="@+id/logoView" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register"
+        android:id="@+id/registerButton"
+        android:textColor="#ffffffff"
+        android:background="#ff7e51c2"
+        android:layout_alignBaseline="@+id/goBackButton"
+        android:layout_alignBottom="@+id/goBackButton"
+        android:layout_alignEnd="@+id/passwordEditText"
+        android:layout_toEndOf="@+id/logoView" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -79,7 +178,12 @@
         android:inputType="text"
         android:ems="10"
         android:id="@+id/firstNameEditText"
-        android:layout_below="@+id/firstNameTextView"
+        android:layout_marginBottom="10dp"
+        android:textColorHint="#ffffffff"
+        android:textColor="#ffffffff"
+        android:hint="@string/firstName"
+        android:layout_below="@+id/passwordEditText"
+        android:layout_alignEnd="@+id/registerButton"
         android:layout_alignParentStart="true" />
 
     <EditText
@@ -88,24 +192,12 @@
         android:inputType="text"
         android:ems="10"
         android:id="@+id/lastNameEditText"
-        android:layout_below="@+id/lastNameTextView"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/register"
-        android:id="@+id/registerButton"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/goBack"
-        android:id="@+id/goBackButton"
-        android:layout_alignTop="@+id/registerButton"
-        android:layout_alignParentStart="true" />
-
+        android:layout_marginBottom="10dp"
+        android:textColorHint="#ffffffff"
+        android:textColor="#ffffffff"
+        android:hint="@string/lastName"
+        android:layout_below="@+id/firstNameEditText"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/registerButton" />
 
 </RelativeLayout>

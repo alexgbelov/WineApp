@@ -64,6 +64,7 @@ public class ItemInformationActivity extends AppCompatActivity {
                 intent.putExtra("itemDescription", getIntent().getStringExtra("itemDescription"));
                 intent.putExtra("itemName", getIntent().getStringExtra("itemName"));
                 intent.putExtra("itemPrice", getIntent().getDoubleExtra("itemPrice", 0));
+                intent.putExtra("imageFileName", getIntent().getStringExtra("imageFileName"));
                 startActivity(intent);
                 finish();
             }
@@ -78,6 +79,7 @@ public class ItemInformationActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), OrderItemsActivity.class);
                 intent.putExtra("itemId", getIntent().getStringExtra("itemId"));
                 intent.putExtra("itemPrice", getIntent().getDoubleExtra("itemPrice", 0));
+                intent.putExtra("imageFileName", getIntent().getStringExtra("imageFileName"));
                 startActivity(intent);
             }
         });

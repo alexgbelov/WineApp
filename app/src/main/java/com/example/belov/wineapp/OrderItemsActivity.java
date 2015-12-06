@@ -1,20 +1,24 @@
 package com.example.belov.wineapp;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.parse.ParseHandler;
 
+import java.io.FileInputStream;
 import java.text.DecimalFormat;
 
 
@@ -22,6 +26,7 @@ public class OrderItemsActivity extends AppCompatActivity {
 
     private final static String GET_ITEM = "order";
 
+    private ImageView itemImageView;
     private Button placeOrderButton;
     private TextView cancelButton;
     private EditText quantity;
@@ -44,6 +49,23 @@ public class OrderItemsActivity extends AppCompatActivity {
         //buttons
         placeOrderButton = (Button) findViewById(R.id.placeOrder);
         cancelButton = (TextView) findViewById(R.id.cancel);
+
+        // image view of item
+        itemImageView = (ImageView) findViewById(R.id.mainImg);
+
+        // get image and set it on the image view
+        String imageFileName = getIntent().getStringExtra("imageFileName");
+        if (imageFileName != null) {
+            try {
+                FileInputStream fileInputStream = this.openFileInput(imageFileName);
+                itemImageView.setImageBitmap(BitmapFactory.decodeStream(fileInputStream));
+                fileInputStream.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.d("DEBUG", "Image file name is null!");
+        }
 
         //edit text
         quantity = (EditText) findViewById(R.id.quantityInput);

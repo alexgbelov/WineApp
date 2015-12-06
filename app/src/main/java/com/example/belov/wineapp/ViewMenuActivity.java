@@ -1,8 +1,10 @@
 package com.example.belov.wineapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.SyncStateContract;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.FileOutputStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -67,6 +70,19 @@ public class ViewMenuActivity extends ActionBarActivity {
                 goToInfo.putExtra("itemName", clickedItem.getName());
                 goToInfo.putExtra("itemPrice", clickedItem.getPrice());
                 goToInfo.putExtra("itemDescription", clickedItem.getDescription());
+
+                // save item image to be used in other activities
+                try {
+                    String filename = "imageFile.png";
+                    FileOutputStream fileOutputStream = ViewMenuActivity.this.openFileOutput(filename, ViewMenuActivity.this.MODE_PRIVATE);
+                    clickedItem.getItemImage().compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream);
+
+                    // clean up and put file name in extras
+                    fileOutputStream.close();
+                    goToInfo.putExtra("imageFileName", filename);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
                 startActivity(goToInfo);
             }

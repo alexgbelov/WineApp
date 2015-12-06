@@ -51,18 +51,21 @@ public class AddNewReview extends AppCompatActivity{
                 String ratingText = ((EditText) findViewById(R.id.review)).getText().toString();
 
 
-                boolean success = handler.uploadUserReview(getIntent().getStringExtra("itemId"), ratingText, Math.round(starCount) );
-
-                Toast toast = Toast.makeText(getApplicationContext(), "Review Submitted", Toast.LENGTH_SHORT);
-                toast.show();
+                boolean success = handler.uploadUserReview(getIntent().getStringExtra("itemId"), ratingText, starCount);
 
                 if (success) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Review Submitted!", Toast.LENGTH_SHORT);
+                    toast.show();
+
                     Intent intent = new Intent(getApplicationContext(), ItemInformationActivity.class);
                     intent.putExtra("itemId", getIntent().getStringExtra("itemId"));
                     intent.putExtra("itemDescription", getIntent().getStringExtra("itemDescription"));
                     intent.putExtra("itemName", getIntent().getStringExtra("itemName"));
                     intent.putExtra("itemPrice", getIntent().getDoubleExtra("itemPrice", 0));
                     startActivity(intent);
+                } else {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Review could not be uploaded. Database connection failed.", Toast.LENGTH_SHORT);
+                    toast.show();
                 }
 
                 finish();

@@ -10,15 +10,15 @@ public class UserReview {
     // user review fields
     private String reviewId;
     private String review;
-    private Integer numberOfStars;
+    private Float numberOfStars;
 
     /**
      * Constructor to set up a user review object with specific fields.
      * @param reviewId String containing the id of the review.
      * @param review String holding the text for the review.
-     * @param numberOfStars Integer that specifies the star rating.
+     * @param numberOfStars Float that specifies the star rating.
      */
-    public UserReview(String reviewId, String review, Integer numberOfStars) {
+    public UserReview(String reviewId, String review, Float numberOfStars) {
         this.reviewId = reviewId;
         this.review = review;
         this.numberOfStars = numberOfStars;
@@ -58,17 +58,17 @@ public class UserReview {
 
     /**
      * Returns the number of stars this review has.
-     * @return Integer containing the number of stars in the rating.
+     * @return Float containing the number of stars in the rating.
      */
-    public Integer getNumberOfStars() {
+    public Float getNumberOfStars() {
         return numberOfStars;
     }
 
     /**
      * Sets the number of stars to the parameter being passed in.
-     * @param numberOfStars Integer containing the new number of stars.
+     * @param numberOfStars Float containing the new number of stars.
      */
-    public void setNumberOfStars(Integer numberOfStars) {
+    public void setNumberOfStars(Float numberOfStars) {
         this.numberOfStars = numberOfStars;
     }
 

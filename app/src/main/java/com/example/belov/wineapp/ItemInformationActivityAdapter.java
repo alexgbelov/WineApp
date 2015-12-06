@@ -38,16 +38,15 @@ public class ItemInformationActivityAdapter extends ArrayAdapter<UserReview>{
             TextView numStars = (TextView) convertView.findViewById(R.id.numStars);
             TextView reviewContent = (TextView) convertView.findViewById(R.id.reviewContent);
 
-
-
-
             Log.d("DEBUG", "Position of view: " + position);
 
-            numStars.setText(String.valueOf(userReview.getNumberOfStars()) + " stars");
+            // determine if you need to display a decimal value or not
+            if (userReview.getNumberOfStars() == Math.round(userReview.getNumberOfStars()))
+                numStars.setText(String.valueOf(Math.round(userReview.getNumberOfStars())) + " stars");
+            else
+                numStars.setText(String.valueOf(userReview.getNumberOfStars()) + " stars");
+
             reviewContent.setText(userReview.getReview());
-
-
-
         }
 
         return convertView;

@@ -83,7 +83,7 @@ public class OrderItemsActivity extends AppCompatActivity {
                 if (orderPlaced)
                     Toast.makeText(getApplicationContext(), "Order Placed", Toast.LENGTH_SHORT).show();
                 else
-                    Toast.makeText(getApplicationContext(), "Order Could Not Be Placed!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Order could not be placed! Database connection failed.", Toast.LENGTH_SHORT).show();
 
                 finish();
 

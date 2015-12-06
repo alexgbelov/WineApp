@@ -14,30 +14,33 @@
 
     <TextView
         android:id="@+id/itemName"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="23dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/itemImage"
+        android:lines="3"
         android:text="itemName"/>
 
     <TextView
         android:id="@+id/itemPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="5dp"
         android:layout_alignLeft="@+id/itemName"
+        android:layout_below="@id/itemName"
         android:text="itemPrice" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:text="Order"
         android:id="@+id/orderButton"
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true"
-
+        android:background="@color/color_primary_dark"
+        android:textColor="#ffffffff"
         android:focusable="false"
         android:focusableInTouchMode="false"/>
 

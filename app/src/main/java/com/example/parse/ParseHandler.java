@@ -187,7 +187,7 @@ public class ParseHandler {
             for (ParseObject review : parseItemReviews) {
                 itemReviews.add(new UserReview(review.getObjectId(),
                         review.getString("review"),
-                        review.getInt("starRating")));
+                        review.getNumber("starRating").floatValue()));
             }
         } catch (ParseException e) {
             e.printStackTrace();
@@ -240,7 +240,7 @@ public class ParseHandler {
                 for (ParseObject review : parseUserReviews) {
                     userReviews.add(new UserReview(review.getObjectId(),
                             review.getString("review"),
-                            review.getInt("starRating")));
+                            review.getNumber("starRating").floatValue()));
                 }
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -276,7 +276,7 @@ public class ParseHandler {
                 for (ParseObject userReview : parseUserReviews) {
                     userReviews.add(new UserReview(userReview.getObjectId(),
                             userReview.getString("review"),
-                            userReview.getInt("starRating")));
+                            userReview.getNumber("starRating").floatValue()));
                 }
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -292,10 +292,10 @@ public class ParseHandler {
      * adding the new review to the menu item reviews relation.
      * @param itemId String containing the id of the menu item that the review is for.
      * @param review String containing the user's review.
-     * @param numberOfStars int holding the number of stars for the star rating.
+     * @param numberOfStars float holding the number of stars for the star rating.
      * @return boolean (true or false) depending on the success of the upload.
      */
-    public boolean uploadUserReview(String itemId, String review, int numberOfStars) {
+    public boolean uploadUserReview(String itemId, String review, float numberOfStars) {
         boolean successfullyUploaded = true;
 
         // if no user is logged in it is impossible to upload a review

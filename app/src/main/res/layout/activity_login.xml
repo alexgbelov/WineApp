@@ -7,6 +7,8 @@
     android:background="@color/color_primary"
     tools:context="com.example.belov.wineapp.LoginActivity">
 
+    <!-- Design idea from http://javapapers.com/android/beautiful-android-login-screen-design-tutorial/ -->
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

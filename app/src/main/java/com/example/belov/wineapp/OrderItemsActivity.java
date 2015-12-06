@@ -23,7 +23,7 @@ public class OrderItemsActivity extends AppCompatActivity {
     private final static String GET_ITEM = "order";
 
     private Button placeOrderButton;
-    private Button cancelButton;
+    private TextView cancelButton;
     private EditText quantity;
     private TextView price;
     private final DecimalFormat formatter = new DecimalFormat("$#.00");
@@ -43,11 +43,11 @@ public class OrderItemsActivity extends AppCompatActivity {
 
         //buttons
         placeOrderButton = (Button) findViewById(R.id.placeOrder);
-        cancelButton = (Button) findViewById(R.id.cancel);
+        cancelButton = (TextView) findViewById(R.id.cancel);
 
         //edit text
         quantity = (EditText) findViewById(R.id.quantityInput);
-        price = (TextView) findViewById(R.id.priceInput);
+        price = (EditText) findViewById(R.id.priceInput);
 
         // get item's price from intent
         final Double itemPrice = getIntent().getDoubleExtra("itemPrice", 0);

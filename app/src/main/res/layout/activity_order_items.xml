@@ -6,7 +6,7 @@
     android:gravity="center_vertical|center_horizontal"
     android:orientation="vertical"
 
-    android:background="#ffBE80FF" >
+    android:background="@color/color_primary" >
 
     <include
         android:id="@+id/tool_bar"
@@ -59,7 +59,7 @@
                     android:id="@+id/quantity"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#372c24"
+                    android:textColor="#ffffffff"
                     android:text="Quanity"/>
 
                 <EditText
@@ -77,7 +77,7 @@
                     android:text="Price"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#372c24" />
+                    android:textColor="#ffffffff" />
 
 
 
@@ -87,7 +87,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
-                    android:imeOptions="actionUnspecified" android:inputType="textPassword"
+                    android:imeOptions="actionUnspecified"
                     android:maxLines="1" android:singleLine="true"
                     android:layout_marginBottom="10dp"
                     android:textColorHint="#ffffffff"
@@ -96,9 +96,8 @@
                     android:clickable="false"
                     android:cursorVisible="false"
                     android:focusable="false"
-                    android:focusableInTouchMode="false"
+                    android:focusableInTouchMode="false" />
 
-                    />
 
                 <Button android:id="@+id/placeOrder"
                     style="?android:textAppearanceSmall"
@@ -106,7 +105,7 @@
                     android:layout_marginTop="16dp" android:text="Place Order"
                     android:textStyle="bold"
                     android:textColor="#ffffffff"
-                    android:background="#ff7e51c2" />
+                    android:background="@color/color_primary_dark" />
 
                 />
 

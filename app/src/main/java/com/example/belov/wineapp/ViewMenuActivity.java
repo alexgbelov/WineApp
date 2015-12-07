@@ -49,7 +49,7 @@ public class ViewMenuActivity extends ActionBarActivity {
         mAdapter = new ViewMenuActivityAdapter(this, itemArrayList);
 
         //get listview
-        ListView listMenu = (ListView)findViewById(R.id.listView);
+        ListView listMenu = (ListView) findViewById(R.id.listView);
 
         //add listview to adapter
         listMenu.setAdapter(mAdapter);
@@ -148,6 +148,11 @@ public class ViewMenuActivity extends ActionBarActivity {
     @Override
     public boolean onOptionsItemSelected(android.view.MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.action_view_orders:
+                Intent viewOrders = new Intent(this, ViewMyOrders.class);
+                viewOrders.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(viewOrders);
+                return true;
             case R.id.action_logout:
                 ParseHandler.getParseHandler().logoutUser();
                 Intent backToLogin = new Intent(this, LoginActivity.class);

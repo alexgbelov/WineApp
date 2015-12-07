@@ -20,4 +20,6 @@
     <string name="title_activity_order_menu">OrderMenuActivity</string>
     <string name="title_activity_order_items">OrderItemsActivity</string>
     <string name="action_sign_in">Login</string>
+    <string name="my_current_orders">Current Orders</string>
+    <string name="my_past_orders">Past Orders</string>
 </resources>

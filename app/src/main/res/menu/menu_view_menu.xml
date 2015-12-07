@@ -8,12 +8,12 @@
         android:orderInCategory="1"
         android:title="My Account"
         app:showAsAction="never" />
-
+-->
     <item
-        android:id="@+id/action_edit_account"
+        android:id="@+id/action_view_orders"
         android:orderInCategory="2"
-        android:title="Edit Account"
-        app:showAsAction="never" />-->
+        android:title="My Orders"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/action_logout"

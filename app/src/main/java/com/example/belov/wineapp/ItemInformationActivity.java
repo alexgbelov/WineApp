@@ -98,6 +98,11 @@ public class ItemInformationActivity extends AppCompatActivity {
             case android.R.id.home:
                 NavUtils.navigateUpFromSameTask(this);
                 return true;
+            case R.id.action_view_orders:
+                Intent viewOrders = new Intent(this, ViewMyOrders.class);
+                viewOrders.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(viewOrders);
+                return true;
             case R.id.action_logout:
                 ParseHandler.getParseHandler().logoutUser();
                 Intent backToLogin = new Intent(this, LoginActivity.class);

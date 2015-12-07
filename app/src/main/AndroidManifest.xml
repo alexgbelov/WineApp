@@ -41,17 +41,24 @@
         </activity>
         <activity
             android:name=".ItemInformationActivity"
-            android:label="ItemInformationActivity">
-
+            android:label="ItemInformationActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ViewMenuActivity" />
         </activity>
         <activity
             android:name=".AddNewReview"
-            android:label="AddNewReview">
+            android:label="AddNewReview" >
         </activity>
-
+        <activity
+            android:name=".ViewMyOrders"
+            android:label="@string/title_activity_order_items">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ViewMenuActivity" />
+        </activity>
+        <activity android:name=".OrderedItemsAdapter">
+        </activity>
     </application>
 
 </manifest>

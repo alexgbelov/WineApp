@@ -24,7 +24,7 @@ public class ParseHandler {
     private ArrayList<MenuItem> menuItems;
     private ArrayList<UserReview> itemReviews;
     private ArrayList<UserReview> userReviews;
-    private TreeSet<String> orderedItems;
+    private ArrayList<OrderedItem> orderedItems;
     private static ParseHandler parseHandler;
 
 
@@ -35,7 +35,7 @@ public class ParseHandler {
         menuItems = new ArrayList<MenuItem>();
         itemReviews = new ArrayList<UserReview>();
         userReviews = new ArrayList<UserReview>();
-        orderedItems = new TreeSet<String>();
+        orderedItems = new ArrayList<OrderedItem>();
     }
 
     /**
@@ -61,10 +61,14 @@ public class ParseHandler {
     public boolean loginUser(String username, String password) {
         boolean loggedIn = true;
 
-        try {
-            ParseUser.logIn(username, password);
-        } catch (ParseException e) {
-            e.printStackTrace();
+        if (username != null && password != null && !username.isEmpty() && !password.isEmpty()) {
+            try {
+                ParseUser.logIn(username, password);
+            } catch (ParseException e) {
+                e.printStackTrace();
+                loggedIn = false;
+            }
+        } else {
             loggedIn = false;
         }
 
@@ -84,16 +88,21 @@ public class ParseHandler {
         boolean successfullyRegistered = true;
 
         // create new user object
-        ParseUser newUser = new ParseUser();
-        newUser.setUsername(username);
-        newUser.setPassword(password);
-        newUser.put("firstName", firstName);
-        newUser.put("lastName", lastName);
+        if (firstName != null && lastName != null && username != null && password != null &&
+                !firstName.isEmpty() && !lastName.isEmpty() && !username.isEmpty() && !password.isEmpty()) {
+            ParseUser newUser = new ParseUser();
+            newUser.setUsername(username);
+            newUser.setPassword(password);
+            newUser.put("firstName", firstName);
+            newUser.put("lastName", lastName);
 
-        try {
-            newUser.signUp();
-        } catch (ParseException e) {
-            e.printStackTrace();
+            try {
+                newUser.signUp();
+            } catch (ParseException e) {
+                e.printStackTrace();
+                successfullyRegistered = false;
+            }
+        } else {
             successfullyRegistered = false;
         }
 
@@ -199,20 +208,31 @@ public class ParseHandler {
     /**
      * Retrieves the ordered items for the currently logged in user
      * and returns their menu item ids as a set.
-     * @return TreeSet<String> containing the set of the user's ordered items ids.
+     * @return ArrayList<OrderedItem> containing the collection of user ordered items.
      */
-    public TreeSet<String> getOrderedItems() {
+    public ArrayList<OrderedItem> getOrderedItems() {
         orderedItems.clear();
 
         if (isUserLoggedIn()) {
             try {
-                ParseUser.getCurrentUser().fetch();  // update current user information
+                ParseUser.getCurrentUser().fetchIfNeeded();  // update current user information
                 ParseRelation<ParseObject> orderedItemsRelation = ParseUser.getCurrentUser().getRelation("orderedItems");
                 List<ParseObject> parseOrderedItems = orderedItemsRelation.getQuery().find();
+                MenuItem currentMenuItem;
+                ParseObject retrievedMenuItem;
 
-                // extract the menu item ids from the ParseObjects
+                // convert Parse objects into OrderedItem models
                 for (ParseObject item : parseOrderedItems) {
-                    orderedItems.add(item.getParseObject("menuItem").getObjectId());
+                    retrievedMenuItem = item.getParseObject("menuItem");
+                    retrievedMenuItem.fetchIfNeeded();
+
+                    currentMenuItem = new MenuItem(retrievedMenuItem.getObjectId(),
+                            retrievedMenuItem.getString("name"),
+                            retrievedMenuItem.getString("description"),
+                            retrievedMenuItem.getDouble("price"),
+                            retrievedMenuItem.getParseFile("itemImage"));
+                    orderedItems.add(new OrderedItem(currentMenuItem, item.getCreatedAt(),
+                            item.getInt("orderQuantity"), item.getBoolean("orderFulfilled")));
                 }
             } catch (ParseException e) {
                 e.printStackTrace();

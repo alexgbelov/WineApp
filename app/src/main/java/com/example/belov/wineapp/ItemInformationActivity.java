@@ -42,7 +42,7 @@ public class ItemInformationActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // grab user reviews
-        reviewArrayList = ParseHandler.getParseHandler().getItemReviews(getIntent().getStringExtra("itemId"));
+        reviewArrayList = ParseHandler.getParseHandler().getUserReviews(getIntent().getStringExtra("itemId"));
 
         //initialize adapter
         mAdapter = new ItemInformationActivityAdapter(this, reviewArrayList);
@@ -91,7 +91,7 @@ public class ItemInformationActivity extends AppCompatActivity {
         });
 
         handler = ParseHandler.getParseHandler();
-        reviews = handler.getItemReviews(getIntent().getStringExtra("itemId"));
+        reviews = handler.getUserReviews(getIntent().getStringExtra("itemId"));
 
         Button orderButton = (Button) findViewById(R.id.orderButton);
         orderButton.setOnClickListener(new View.OnClickListener() {

@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical|center_horizontal"
     android:orientation="vertical"
-
-    android:background="@color/color_primary" >
+             >
 
     <include
         android:id="@+id/tool_bar"
@@ -59,7 +58,7 @@
                     android:id="@+id/quantity"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#ffffffff"
+                    android:textColor="@color/color_primary"
                     android:text="Quanity"/>
 
                 <EditText
@@ -69,15 +68,14 @@
                     android:inputType="number" android:maxLines="1"
                     android:singleLine="true"
                     android:layout_marginBottom="10dp"
-                    android:textColorHint="#ffffffff"
-                    android:textColor="#ffffffff" />
+                    />
 
                 <TextView
                     android:id="@+id/price"
                     android:text="Price"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#ffffffff" />
+                    android:textColor="@color/color_primary" />
 
 
 
@@ -90,8 +88,7 @@
                     android:imeOptions="actionUnspecified"
                     android:maxLines="1" android:singleLine="true"
                     android:layout_marginBottom="10dp"
-                    android:textColorHint="#ffffffff"
-                    android:textColor="#ffffffff"
+
 
                     android:clickable="false"
                     android:cursorVisible="false"
@@ -136,7 +133,7 @@
             android:text="Cancel"
             android:textSize="20dp"
             android:autoLink="web"
-            android:textColor="#ffffffff" />
+            android:textColor="@color/color_primary" />
 
     </RelativeLayout>
 

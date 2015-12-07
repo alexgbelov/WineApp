@@ -1,19 +1,23 @@
 package com.example.belov.wineapp;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.example.parse.ParseHandler;
 import com.example.parse.UserReview;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
 
 public class ItemInformationActivity extends AppCompatActivity {
@@ -22,6 +26,7 @@ public class ItemInformationActivity extends AppCompatActivity {
     private ArrayList<UserReview> reviewArrayList;
     private ItemInformationActivityAdapter mAdapter;
     private Toolbar toolbar;
+    private ImageView itemImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +52,22 @@ public class ItemInformationActivity extends AppCompatActivity {
 
         //add listview to adapter
         listMenu.setAdapter(mAdapter);
+        // image view of item
+        itemImageView = (ImageView) findViewById(R.id.itemImage);
+        // get image and set it on the image view
+        String imageFileName = getIntent().getStringExtra("imageFileName");
+        if (imageFileName != null) {
+            try {
 
+                FileInputStream fileInputStream = this.openFileInput(imageFileName);
+                itemImageView.setImageBitmap(BitmapFactory.decodeStream(fileInputStream));
+                fileInputStream.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.d("DEBUG", "Image file name is null!");
+        }
 
         TextView name =  (TextView) findViewById(R.id.name);
         String itemName = getIntent().getStringExtra("itemName");

@@ -20,7 +20,8 @@
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/itemImage"
         android:lines="3"
-        android:text="itemName"/>
+        android:text="itemName"
+        />
 
     <TextView
         android:id="@+id/itemPrice"

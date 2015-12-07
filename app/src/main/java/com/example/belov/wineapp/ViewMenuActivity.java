@@ -71,6 +71,7 @@ public class ViewMenuActivity extends ActionBarActivity {
                 goToInfo.putExtra("itemPrice", clickedItem.getPrice());
                 goToInfo.putExtra("itemDescription", clickedItem.getDescription());
 
+
                 // save item image to be used in other activities
                 try {
                     String filename = "imageFile.png";
@@ -80,11 +81,12 @@ public class ViewMenuActivity extends ActionBarActivity {
                     // clean up and put file name in extras
                     fileOutputStream.close();
                     goToInfo.putExtra("imageFileName", filename);
+                    startActivity(goToInfo);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
-                startActivity(goToInfo);
+                //startActivity(goToInfo);
             }
         });
     }

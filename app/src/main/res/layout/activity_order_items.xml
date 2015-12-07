@@ -68,7 +68,7 @@
                     android:inputType="number" android:maxLines="1"
                     android:singleLine="true"
                     android:layout_marginBottom="10dp"
-                    android:textColor="#ffffffff" />
+                    />
 
                 <TextView
                     android:id="@+id/price"
@@ -88,8 +88,7 @@
                     android:imeOptions="actionUnspecified"
                     android:maxLines="1" android:singleLine="true"
                     android:layout_marginBottom="10dp"
-                    android:textColorHint="#ffffffff"
-                    android:textColor="#ffffffff"
+
 
                     android:clickable="false"
                     android:cursorVisible="false"

@@ -69,7 +69,7 @@
                     android:id="@+id/HeaderTextView"
                     android:layout_weight="5"
                     android:layout_height="wrap_content"
-                    android:text="                   User Reviews"
+                    android:text="                      My Reviews"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#7a16c8"
                     android:textStyle="bold"

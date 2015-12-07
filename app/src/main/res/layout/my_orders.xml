@@ -26,7 +26,8 @@
         android:layout_width="wrap_content"
         android:layout_height="141dp"
         android:id="@+id/current_order_list_view"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:clickable="false">
     </ListView>
 
     <TextView
@@ -47,7 +48,8 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/past_order_list_view"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:clickable="false">
     </ListView>
 
 </LinearLayout>
